@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'theme.dart';
 
 
 void main() {
@@ -12,9 +13,7 @@ class LMSApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'LMS App',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: AppTheme.light(),
       home: const Scaffold(
         body: Center(
           child: Text('Welcome to the LMS App!'),
