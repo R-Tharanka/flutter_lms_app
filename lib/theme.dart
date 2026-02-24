@@ -19,7 +19,11 @@ class AppTheme {
         ),
       ),
       textTheme: const TextTheme(
-        bodyMedium: TextStyle(color: Colors.black87, fontSize: 20, fontWeight: FontWeight.bold),
+        bodyMedium: TextStyle(
+          color: Colors.black87,
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),
       ),
     );
   }

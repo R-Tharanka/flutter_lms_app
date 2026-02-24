@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'theme.dart';
 
-
 void main() {
   runApp(const LMSApp());
 }
@@ -15,9 +14,7 @@ class LMSApp extends StatelessWidget {
       title: 'LMS App',
       theme: AppTheme.light(),
       home: const Scaffold(
-        body: Center(
-          child: Text('Welcome to the LMS App!'),
-        ),
+        body: Center(child: Text('Welcome to the LMS App!')),
       ),
       debugShowCheckedModeBanner: false,
     );
