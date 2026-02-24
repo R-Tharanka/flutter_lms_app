@@ -57,9 +57,16 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty)
-                        return 'Please enter email';
-                      if (!value.contains('@')) return 'Enter a valid email';
+                      if (value == null || value.trim().isEmpty) {
+                        return 'Please enter your email';
+                      }
+                      final emailRegex = RegExp(
+                        r'^[\w-\.]+@([\w-]+\.)+[\w-]{2,4}$',
+                      );
+                      if (!emailRegex.hasMatch(value.trim())) {
+                        return 'Enter a valid email address';
+                      }
+
                       return null;
                     },
                   ),
@@ -97,7 +104,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text('Don\'t have an account?'),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Sign Up'),
+                        child: const Text('Sign Up', style: TextStyle(fontSize: 18.0)),
                       ),
                     ],
                   ),
