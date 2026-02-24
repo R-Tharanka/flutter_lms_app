@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/progress_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -50,19 +51,19 @@ class _HomeScreenState extends State<HomeScreen> {
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
-                const Text('Keep learning — progress today!'),
+                //const Text('Keep learning — progress today!'),
               ],
             ),
           ),
           SizedBox(
-            height: 140,
+            height: 170,
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
-                SizedBox(width: 12),
-
-                SizedBox(width: 8),
-
+                SizedBox(width: 240,
+                child: ProgressCard(title: 'Flutter for Beginners', subtitle: 'Chapter 2 of 12', percent: 0.3),),
+                SizedBox(width: 240,
+                child: ProgressCard(title: 'Dart Programming', subtitle: 'Chapter 5 of 10', percent: 0.5),),
                 SizedBox(width: 12),
               ],
             ),

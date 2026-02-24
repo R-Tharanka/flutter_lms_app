@@ -33,19 +33,23 @@ class _LoginScreenState extends State<LoginScreen> {
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(title: const Text('Login')),
+      appBar: AppBar(title: const Text('Login', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.only(
+          left: 20.0,
+          right: 20.0,
+          top: 80.0,
+        ),
         child: Column(
           children: [
             SizedBox(height: MediaQuery.of(context).size.height * 0.06),
-            Image.asset('assets/images/logo.png', width: 100, height: 100),
+            Image.asset('assets/images/logo-bgr.png', width: 100, height: 100),
             const SizedBox(height: 16),
             const Text(
               'Welcome Back',
               style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 60),
             Form(
               key: _formKey,
               child: Column(
@@ -70,7 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 12),
+                  const SizedBox(height: 16),
                   TextFormField(
                     controller: _passwordController,
                     obscureText: true,
@@ -86,7 +90,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       return null;
                     },
                   ),
-                  const SizedBox(height: 18),
+                  const SizedBox(height: 40),
                   SizedBox(
                     width: width,
                     height: 48,
@@ -104,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text('Don\'t have an account?'),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Sign Up', style: TextStyle(fontSize: 18.0)),
+                        child: const Text('Sign Up', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
                       ),
                     ],
                   ),
