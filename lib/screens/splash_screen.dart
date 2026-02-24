@@ -25,7 +25,7 @@ class _SplashScreenState extends State<SplashScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('assets/images/logo.png', width: 150),
+            Image.asset('assets/images/logo-bgr.png', width: 150),
             const SizedBox(height: 20),
             const Text(
               'Welcome to LMS App',

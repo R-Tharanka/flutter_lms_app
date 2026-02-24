@@ -46,7 +46,7 @@ class _HomeScreenState extends State<HomeScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const Text(
-                  'Good morning, Ruchira',
+                  'Welcome Back, User!',
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
@@ -61,9 +61,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: const [
                 SizedBox(width: 12),
 
-
                 SizedBox(width: 8),
-
 
                 SizedBox(width: 12),
               ],
@@ -78,8 +76,6 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 8),
-
-          
         ],
       ),
     );
@@ -92,8 +88,11 @@ class CoursesScreenPlaceholder extends StatelessWidget {
   const CoursesScreenPlaceholder({super.key});
   @override
   Widget build(BuildContext context) => const Center(
-    child: Text(
-      'Courses Tab — tap Courses in the menu to open the Courses screen from route.',
+    child: Padding(
+      padding: EdgeInsets.all(24.0),
+      child: Text(
+        'Courses Tab — tap Courses in the menu to open the Courses screen from route.',
+      ),
     ),
   );
 }
