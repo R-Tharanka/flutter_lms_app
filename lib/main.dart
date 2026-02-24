@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'app_routes.dart';
 import 'theme.dart';
 
 void main() {
@@ -13,9 +14,11 @@ class LMSApp extends StatelessWidget {
     return MaterialApp(
       title: 'LMS App',
       theme: AppTheme.light(),
-      home: const Scaffold(
-        body: Center(child: Text('Welcome to the LMS App!')),
-      ),
+      initialRoute: AppRoutes.splash,
+      routes: AppRoutes.routes,
+      // home: const Scaffold(
+      //   body: Center(child: Text('Welcome to the LMS App!')),
+      // ),
       debugShowCheckedModeBanner: false,
     );
   }
