@@ -8,7 +8,7 @@ class ProfileScreen extends StatefulWidget {
 
 class _ProfileScreenState extends State<ProfileScreen> {
   bool _editing = false;
-  final _nameController = TextEditingController(text: 'Ruchira Tharanka');
+  final _nameController = TextEditingController(text: 'Kasun Udara');
   final _bioController = TextEditingController(
     text: 'Final-year Software Engineering student.',
   );

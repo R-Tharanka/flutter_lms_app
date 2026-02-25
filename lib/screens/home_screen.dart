@@ -3,6 +3,8 @@ import '../widgets/progress_card.dart';
 import '../models/course.dart';
 import '../widgets/course_card.dart';
 import '../screens/courses_screen.dart';
+import '../screens/assignments_screen.dart';
+import '../screens/profile_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -17,8 +19,8 @@ class _HomeScreenState extends State<HomeScreen> {
     final tabs = [
       _dashboardTab(),
       const CoursesScreen(),
-      const AssignmentsScreenPlaceholder(),
-      const ProfileScreenPlaceholder(),
+      const AssignmentsScreen(),
+      const ProfileScreen(),
     ];
     return Scaffold(
       appBar: AppBar(title: const Text('LMS')),
@@ -87,18 +89,4 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-class AssignmentsScreenPlaceholder extends StatelessWidget {
-  const AssignmentsScreenPlaceholder({super.key});
-  @override
-  Widget build(BuildContext context) =>
-      const Center(child: Text('Assignments Tab'));
-}
-
-class ProfileScreenPlaceholder extends StatelessWidget {
-  const ProfileScreenPlaceholder({super.key});
-  @override
-  Widget build(BuildContext context) =>
-      const Center(child: Text('Profile Tab'));
 }
