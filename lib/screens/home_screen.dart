@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../widgets/progress_card.dart';
 import '../models/course.dart';
 import '../widgets/course_card.dart';
+import '../screens/courses_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -15,7 +16,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     final tabs = [
       _dashboardTab(),
-      const CoursesScreenPlaceholder(),
+      const CoursesScreen(),
       const AssignmentsScreenPlaceholder(),
       const ProfileScreenPlaceholder(),
     ];
@@ -86,21 +87,6 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
     );
   }
-}
-
-// Small placeholders to keep HomeScreen contained — these screens are implemented separately but
-// referenced as placeholders to show bottom navigation working without routing in this file.
-class CoursesScreenPlaceholder extends StatelessWidget {
-  const CoursesScreenPlaceholder({super.key});
-  @override
-  Widget build(BuildContext context) => const Center(
-    child: Padding(
-      padding: EdgeInsets.all(24.0),
-      child: Text(
-        'Courses Tab — tap Courses in the menu to open the Courses screen from route.',
-      ),
-    ),
-  );
 }
 
 class AssignmentsScreenPlaceholder extends StatelessWidget {
