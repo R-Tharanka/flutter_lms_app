@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import '../widgets/progress_card.dart';
+import '../models/course.dart';
+import '../widgets/course_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -48,7 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
               children: [
                 const Text(
                   'Welcome Back, User!',
-                  style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 const SizedBox(height: 8),
                 //const Text('Keep learning — progress today!'),
@@ -68,7 +70,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ],
             ),
           ),
-          const SizedBox(height: 12),
+          const SizedBox(height: 16),
           const Padding(
             padding: EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
@@ -77,6 +79,9 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 8),
+          ...dummyCourses
+              .map((c) => CourseCard(course: c, onTap: () {}))
+              .toList(),
         ],
       ),
     );
