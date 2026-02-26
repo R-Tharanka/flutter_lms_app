@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../widgets/section_header.dart';
+import '../widgets/app_bar_simple.dart';
 import '../widgets/primary_button.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -29,7 +29,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       'UI Design Basics',
     ];
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile')),
+      appBar: AppBarSimple(title: 'Profile'),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -57,7 +57,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ),
               const SizedBox(height: 6),
-              Center(child: Text(_bioController.text)),
+              Center(
+                child: Text(
+                  _bioController.text,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
             ] else ...[
               TextField(
                 controller: _nameController,
@@ -67,10 +72,12 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextField(
                 controller: _bioController,
                 decoration: const InputDecoration(labelText: 'Bio'),
-              ),
+                ),
             ],
             const SizedBox(height: 24),
-            const SectionHeader(title: 'Completed Courses'),
+
+            const Text('Completed Courses', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+
             const SizedBox(height: 8),
             ...completedCourses.map(
               (title) => ListTile(
