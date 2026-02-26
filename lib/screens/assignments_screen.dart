@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../widgets/app_bar_simple.dart';
 
 class AssignmentsScreen extends StatelessWidget {
   const AssignmentsScreen({super.key});
@@ -10,7 +11,7 @@ class AssignmentsScreen extends StatelessWidget {
       {'title': 'Week 3 Assignment', 'status': 'Pending'},
     ];
     return Scaffold(
-      appBar: AppBar(title: const Text('Assignments')),
+      appBar: AppBarSimple(title: 'Assignments'),
       body: ListView.builder(
         itemCount: items.length,
         itemBuilder: (ctx, i) => ListTile(

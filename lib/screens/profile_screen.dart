@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import '../widgets/app_bar_simple.dart';
+import '../widgets/primary_button.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -21,29 +23,46 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final completedCourses = [
+      'Flutter for Beginners',
+      'Dart Programming',
+      'UI Design Basics',
+    ];
     return Scaffold(
-      appBar: AppBar(title: const Text('Profile')),
-      body: Padding(
+      appBar: AppBarSimple(title: 'Profile'),
+      body: SingleChildScrollView(
         padding: const EdgeInsets.all(16.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            CircleAvatar(
-              radius: 40,
-              child: Text(
-                _nameController.text.isNotEmpty ? _nameController.text[0] : 'U',
+            Center(
+              child: CircleAvatar(
+                radius: 40,
+                child: Text(
+                  _nameController.text.isNotEmpty
+                      ? _nameController.text[0]
+                      : 'U',
+                ),
               ),
             ),
             const SizedBox(height: 12),
             if (!_editing) ...[
-              Text(
-                _nameController.text,
-                style: const TextStyle(
-                  fontSize: 18,
-                  fontWeight: FontWeight.bold,
+              Center(
+                child: Text(
+                  _nameController.text,
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
               ),
               const SizedBox(height: 6),
-              Text(_bioController.text),
+              Center(
+                child: Text(
+                  _bioController.text,
+                  style: const TextStyle(fontSize: 18),
+                ),
+              ),
             ] else ...[
               TextField(
                 controller: _nameController,
@@ -53,12 +72,24 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextField(
                 controller: _bioController,
                 decoration: const InputDecoration(labelText: 'Bio'),
-              ),
+                ),
             ],
-            const Spacer(),
-            ElevatedButton(
+            const SizedBox(height: 24),
+
+            const Text('Completed Courses', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+
+            const SizedBox(height: 8),
+            ...completedCourses.map(
+              (title) => ListTile(
+                contentPadding: EdgeInsets.zero,
+                leading: const Icon(Icons.check_circle, color: Colors.green),
+                title: Text(title),
+              ),
+            ),
+            const SizedBox(height: 16),
+            PrimaryButton(
+              label: _editing ? 'Save' : 'Edit Profile',
               onPressed: () => setState(() => _editing = !_editing),
-              child: Text(_editing ? 'Save' : 'Edit Profile'),
             ),
           ],
         ),
