@@ -46,7 +46,7 @@ class _LessonScreenState extends State<LessonScreen> {
             ),
             const SizedBox(height: 8),
             const Text(
-              'This is a placeholder for the lesson content (video/reading).',
+              'Placeholder for the lesson content (video/reading).',
             ),
             const Spacer(),
             ElevatedButton(
