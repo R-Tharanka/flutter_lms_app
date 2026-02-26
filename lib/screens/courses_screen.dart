@@ -10,6 +10,11 @@ class CoursesScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Courses')),
       body: ListView.builder(
+       padding: const EdgeInsets.only(
+          top: 16,
+          left: 6,
+          right: 6,
+       ),
         itemCount: dummyCourses.length,
         itemBuilder: (ctx, i) {
           final c = dummyCourses[i];

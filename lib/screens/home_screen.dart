@@ -21,7 +21,7 @@ class _HomeScreenState extends State<HomeScreen> {
       const ProfileScreenPlaceholder(),
     ];
     return Scaffold(
-      appBar: AppBar(title: const Text('LMS')),
+      appBar: _index == 0 ?AppBar(title: const Text('LMS')) : null,
       body: tabs[_index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
