@@ -9,7 +9,8 @@ class CourseDetailScreen extends StatelessWidget {
     final Course course = ModalRoute.of(context)!.settings.arguments as Course;
     return Scaffold(
       appBar: AppBar(title: Text(course.title)),
-      body: Padding(
+      body: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         padding: const EdgeInsets.all(12.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -38,21 +39,21 @@ class CourseDetailScreen extends StatelessWidget {
               style: TextStyle(fontWeight: FontWeight.bold),
             ),
             const SizedBox(height: 8),
-            Expanded(
-              child: ListView.builder(
-                itemCount: course.lessons,
-                itemBuilder: (ctx, i) => ListTile(
-                  leading: const Icon(Icons.play_circle_outline),
-                  title: Text('Lesson ${i + 1}'),
-                  subtitle: Text('Duration: ${(10 + i)} mins'),
-                  trailing: ElevatedButton(
-                    onPressed: () => Navigator.pushNamed(
-                      context,
-                      AppRoutes.lesson,
-                      arguments: {'course': course, 'lessonIndex': i},
-                    ),
-                    child: const Text('Open'),
+            ListView.builder(
+              shrinkWrap: true,
+              physics: const NeverScrollableScrollPhysics(),
+              itemCount: course.lessons,
+              itemBuilder: (ctx, i) => ListTile(
+                leading: const Icon(Icons.play_circle_outline),
+                title: Text('Lesson ${i + 1}'),
+                subtitle: Text('Duration: ${(10 + i)} mins'),
+                trailing: ElevatedButton(
+                  onPressed: () => Navigator.pushNamed(
+                    context,
+                    AppRoutes.lesson,
+                    arguments: {'course': course, 'lessonIndex': i},
                   ),
+                  child: const Text('Open'),
                 ),
               ),
             ),
