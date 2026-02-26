@@ -33,12 +33,12 @@ class CourseCard extends StatelessWidget {
                     Text(
                       course.title,
                       style: const TextStyle(
-                        fontSize: 16,
+                        fontSize: 18,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
                     const SizedBox(height: 6),
-                    Text('by ${course.instructor}'),
+                    Text('By ${course.instructor}', style: TextStyle(fontSize: 17),),
                     const SizedBox(height: 8),
                     Row(
                       children: [
