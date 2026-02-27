@@ -74,7 +74,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 decoration: const InputDecoration(labelText: 'Bio'),
                 ),
             ],
-            const SizedBox(height: 24),
+            
+            const SizedBox(height: 20),
+            PrimaryButton(
+              label: _editing ? 'Save' : 'Edit Profile',
+              onPressed: () => setState(() => _editing = !_editing),
+            ),
+            const SizedBox(height: 26),
 
             const Text('Completed Courses', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
 
@@ -82,14 +88,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ...completedCourses.map(
               (title) => ListTile(
                 contentPadding: EdgeInsets.zero,
+                dense: true,
+                visualDensity: const VisualDensity(vertical: -2),
                 leading: const Icon(Icons.check_circle, color: Colors.green),
-                title: Text(title),
+                title: Text(
+                  title,
+                  style: const TextStyle(fontSize: 17),
+                ),
               ),
-            ),
-            const SizedBox(height: 16),
-            PrimaryButton(
-              label: _editing ? 'Save' : 'Edit Profile',
-              onPressed: () => setState(() => _editing = !_editing),
             ),
           ],
         ),
