@@ -20,6 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       body: Center(
         child: Column(
@@ -27,9 +28,12 @@ class _SplashScreenState extends State<SplashScreen> {
           children: [
             Image.asset('assets/images/logo-bgr.png', width: 150),
             const SizedBox(height: 20),
-            const Text(
+            Text(
               'Welcome to LMS App',
-              style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
+              style: textTheme.headlineLarge?.copyWith(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const CircularProgressIndicator(),
           ],
