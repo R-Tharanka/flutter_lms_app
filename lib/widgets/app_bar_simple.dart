@@ -6,16 +6,19 @@ class AppBarSimple extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
 
   const AppBarSimple({
-    Key? key,
+    super.key,
     required this.title,
     this.showBackButton = false,
     this.actions,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
-      title: Text(title, style: const TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+      title: Text(
+        title,
+        style: Theme.of(context).appBarTheme.titleTextStyle,
+      ),
       centerTitle: false,
       automaticallyImplyLeading: showBackButton,
       actions: actions,

@@ -23,7 +23,14 @@ class _HomeScreenState extends State<HomeScreen> {
       const ProfileScreen(),
     ];
     return Scaffold(
-      appBar: _index == 0 ? AppBar(title: const Text('LMS')) : null,
+      appBar: _index == 0
+          ? AppBar(
+              title: Text(
+                'LMS',
+                style: Theme.of(context).appBarTheme.titleTextStyle,
+              ),
+            )
+          : null,
       body: tabs[_index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
@@ -42,6 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _dashboardTab() {
+    final textTheme = Theme.of(context).textTheme;
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,9 +59,12 @@ class _HomeScreenState extends State<HomeScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                const Text(
+                Text(
                   'Welcome Back, User!',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  style: textTheme.titleMedium?.copyWith(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
                 ),
                 const SizedBox(height: 8),
                 //const Text('Keep learning — progress today!'),
@@ -74,11 +85,14 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 16),
-          const Padding(
-            padding: EdgeInsets.symmetric(horizontal: 12.0),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 12.0),
             child: Text(
               'Continue Learning',
-              style: TextStyle(fontWeight: FontWeight.bold),
+              style: textTheme.bodyMedium?.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           const SizedBox(height: 8),

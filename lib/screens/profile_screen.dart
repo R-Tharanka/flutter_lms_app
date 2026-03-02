@@ -23,6 +23,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     final completedCourses = [
       'Flutter for Beginners',
       'Dart Programming',
@@ -50,7 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Center(
                 child: Text(
                   _nameController.text,
-                  style: const TextStyle(
+                  style: textTheme.titleMedium?.copyWith(
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
                   ),
@@ -60,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               Center(
                 child: Text(
                   _bioController.text,
-                  style: const TextStyle(fontSize: 18),
+                  style: textTheme.bodyMedium?.copyWith(fontSize: 18),
                 ),
               ),
             ] else ...[
@@ -82,7 +83,13 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
             const SizedBox(height: 26),
 
-            const Text('Completed Courses', style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+            Text(
+              'Completed Courses',
+              style: textTheme.titleMedium?.copyWith(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
 
             const SizedBox(height: 8),
             ...completedCourses.map(
@@ -93,7 +100,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 leading: const Icon(Icons.check_circle, color: Colors.green),
                 title: Text(
                   title,
-                  style: const TextStyle(fontSize: 17),
+                  style: textTheme.bodyMedium?.copyWith(fontSize: 17),
                 ),
               ),
             ),
