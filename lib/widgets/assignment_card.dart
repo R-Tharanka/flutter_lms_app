@@ -4,7 +4,7 @@ import '../models/assignment.dart';
 class AssignmentCard extends StatelessWidget {
   final Assignment assignment;
 
-  const AssignmentCard({Key? key, required this.assignment}) : super(key: key);
+  const AssignmentCard({super.key, required this.assignment});
 
   @override
   Widget build(BuildContext context) {

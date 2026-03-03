@@ -5,7 +5,7 @@ import '../widgets/primary_button.dart';
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
   @override
-  _ProfileScreenState createState() => _ProfileScreenState();
+  State<ProfileScreen> createState() => _ProfileScreenState();
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
@@ -73,9 +73,9 @@ class _ProfileScreenState extends State<ProfileScreen> {
               TextField(
                 controller: _bioController,
                 decoration: const InputDecoration(labelText: 'Bio'),
-                ),
+              ),
             ],
-            
+
             const SizedBox(height: 20),
             PrimaryButton(
               label: _editing ? 'Save' : 'Edit Profile',
