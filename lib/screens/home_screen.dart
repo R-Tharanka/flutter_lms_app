@@ -9,7 +9,7 @@ import '../screens/profile_screen.dart';
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
@@ -38,10 +38,7 @@ class _HomeScreenState extends State<HomeScreen> {
         items: const [
           BottomNavigationBarItem(icon: Icon(Icons.home), label: 'Home'),
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Courses'),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.assignment),
-            label: 'Assignments',
-          ),
+          BottomNavigationBarItem(icon: Icon(Icons.assignment), label: 'Assignments'),
           BottomNavigationBarItem(icon: Icon(Icons.person), label: 'Profile'),
         ],
       ),
@@ -76,10 +73,22 @@ class _HomeScreenState extends State<HomeScreen> {
             child: ListView(
               scrollDirection: Axis.horizontal,
               children: const [
-                SizedBox(width: 240,
-                child: ProgressCard(title: 'Flutter for Beginners', subtitle: 'Chapter 2 of 12', percent: 0.3),),
-                SizedBox(width: 240,
-                child: ProgressCard(title: 'Dart Programming', subtitle: 'Chapter 5 of 10', percent: 0.5),),
+                SizedBox(
+                  width: 240,
+                  child: ProgressCard(
+                    title: 'Flutter for Beginners',
+                    subtitle: 'Chapter 2 of 12',
+                    percent: 0.3,
+                  ),
+                ),
+                SizedBox(
+                  width: 240,
+                  child: ProgressCard(
+                    title: 'Dart Programming',
+                    subtitle: 'Chapter 5 of 10',
+                    percent: 0.5,
+                  ),
+                ),
                 SizedBox(width: 12),
               ],
             ),
@@ -96,9 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           const SizedBox(height: 8),
-          ...dummyCourses
-              .map((c) => CourseCard(course: c, onTap: () {}))
-              .toList(),
+          ...dummyCourses.map((c) => CourseCard(course: c, onTap: () {})),
         ],
       ),
     );

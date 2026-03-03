@@ -5,7 +5,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _loading = true);
     await Future.delayed(const Duration(seconds: 1)); // simulate processing
+    if (!mounted) return;
     setState(() => _loading = false);
     Navigator.pushReplacementNamed(context, AppRoutes.home);
   }

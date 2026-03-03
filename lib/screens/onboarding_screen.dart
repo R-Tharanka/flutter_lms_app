@@ -4,7 +4,7 @@ import '../app_routes.dart';
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
   @override
-  _OnboardingScreenState createState() => _OnboardingScreenState();
+  State<OnboardingScreen> createState() => _OnboardingScreenState();
 }
 
 class _OnboardingScreenState extends State<OnboardingScreen> {
@@ -115,9 +115,9 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
           Text(
             title,
             style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-                  fontSize: 22,
-                  fontWeight: FontWeight.bold,
-                ),
+              fontSize: 22,
+              fontWeight: FontWeight.bold,
+            ),
           ),
           const SizedBox(height: 8),
           Text(subtitle, textAlign: TextAlign.center),

@@ -4,7 +4,7 @@ import '../models/course.dart';
 class LessonScreen extends StatefulWidget {
   const LessonScreen({super.key});
   @override
-  _LessonScreenState createState() => _LessonScreenState();
+  State<LessonScreen> createState() => _LessonScreenState();
 }
 
 class _LessonScreenState extends State<LessonScreen> {
