@@ -47,10 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
               const SizedBox(height: 20),
               Text(
                 'Welcome to LMS App',
-                style: textTheme.headlineLarge?.copyWith(
-                  fontSize: 24,
-                  fontWeight: FontWeight.bold,
-                ),
+                style: textTheme.headlineLarge,
               ),
               const CircularProgressIndicator(),
             ],
