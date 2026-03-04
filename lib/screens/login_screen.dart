@@ -5,7 +5,7 @@ class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
-  _LoginScreenState createState() => _LoginScreenState();
+  State<LoginScreen> createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
@@ -25,6 +25,7 @@ class _LoginScreenState extends State<LoginScreen> {
     if (!_formKey.currentState!.validate()) return;
     setState(() => _loading = true);
     await Future.delayed(const Duration(seconds: 1)); // simulate processing
+    if (!mounted) return;
     setState(() => _loading = false);
     Navigator.pushReplacementNamed(context, AppRoutes.home);
   }
@@ -32,8 +33,17 @@ class _LoginScreenState extends State<LoginScreen> {
   @override
   Widget build(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      appBar: AppBar(title: const Text('Login', style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
+      appBar: AppBar(
+        title: Text(
+          'Login',
+          style: Theme.of(context).appBarTheme.titleTextStyle?.copyWith(
+            fontSize: 24,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.only(
           left: 20.0,
@@ -45,9 +55,12 @@ class _LoginScreenState extends State<LoginScreen> {
             SizedBox(height: MediaQuery.of(context).size.height * 0.06),
             Image.asset('assets/images/logo-bgr.png', width: 100, height: 100),
             const SizedBox(height: 16),
-            const Text(
+            Text(
               'Welcome Back',
-              style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold),
+              style: textTheme.headlineLarge?.copyWith(
+                fontSize: 22,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 60),
             Form(
@@ -83,10 +96,12 @@ class _LoginScreenState extends State<LoginScreen> {
                       border: OutlineInputBorder(),
                     ),
                     validator: (value) {
-                      if (value == null || value.isEmpty)
+                      if (value == null || value.isEmpty) {
                         return 'Please enter password';
-                      if (value.length < 6)
+                      }
+                      if (value.length < 6) {
                         return 'Password must be at least 6 chars';
+                      }
                       return null;
                     },
                   ),
@@ -108,7 +123,14 @@ class _LoginScreenState extends State<LoginScreen> {
                       const Text('Don\'t have an account?'),
                       TextButton(
                         onPressed: () {},
-                        child: const Text('Sign Up', style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold)),
+                        child: Text(
+                          'Sign Up',
+                          style: textTheme.titleMedium?.copyWith(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                            color: Theme.of(context).colorScheme.primary,
+                          ),
+                        ),
                       ),
                     ],
                   ),

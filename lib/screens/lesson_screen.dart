@@ -4,7 +4,7 @@ import '../models/course.dart';
 class LessonScreen extends StatefulWidget {
   const LessonScreen({super.key});
   @override
-  _LessonScreenState createState() => _LessonScreenState();
+  State<LessonScreen> createState() => _LessonScreenState();
 }
 
 class _LessonScreenState extends State<LessonScreen> {
@@ -16,9 +16,13 @@ class _LessonScreenState extends State<LessonScreen> {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final Course course = args['course'];
     final int lessonIndex = args['lessonIndex'];
+    final textTheme = Theme.of(context).textTheme;
     return Scaffold(
       appBar: AppBar(
-        title: Text('${course.title} - Lesson ${lessonIndex + 1}'),
+        title: Text(
+          '${course.title} - Lesson ${lessonIndex + 1}',
+          style: Theme.of(context).appBarTheme.titleTextStyle,
+        ),
       ),
       body: Padding(
         padding: const EdgeInsets.all(12.0),
@@ -42,7 +46,10 @@ class _LessonScreenState extends State<LessonScreen> {
             const SizedBox(height: 12),
             Text(
               'Lesson ${lessonIndex + 1}',
-              style: const TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
+              style: textTheme.titleMedium?.copyWith(
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             const SizedBox(height: 8),
             const Text(

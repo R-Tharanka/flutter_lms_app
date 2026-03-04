@@ -1,0 +1,31 @@
+import 'package:flutter/material.dart';
+
+class AppBarSimple extends StatelessWidget implements PreferredSizeWidget {
+  final String title;
+  final bool showBackButton;
+  final List<Widget>? actions;
+
+  const AppBarSimple({
+    super.key,
+    required this.title,
+    this.showBackButton = false,
+    this.actions,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return AppBar(
+      title: Text(
+        title,
+        style: Theme.of(context).appBarTheme.titleTextStyle,
+      ),
+      centerTitle: false,
+      automaticallyImplyLeading: showBackButton,
+      actions: actions,
+      elevation: 2,
+    );
+  }
+
+  @override
+  Size get preferredSize => const Size.fromHeight(kToolbarHeight);
+}

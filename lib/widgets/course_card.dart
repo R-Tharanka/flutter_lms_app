@@ -7,6 +7,7 @@ class CourseCard extends StatelessWidget {
   const CourseCard({super.key, required this.course, this.onTap});
   @override
   Widget build(BuildContext context) {
+    final textTheme = Theme.of(context).textTheme;
     return InkWell(
       onTap: onTap,
       child: Card(
@@ -32,8 +33,8 @@ class CourseCard extends StatelessWidget {
                   children: [
                     Text(
                       course.title,
-                      style: const TextStyle(
-                        fontSize: 18,
+                      style: textTheme.bodyMedium?.copyWith(
+                        fontSize: 16,
                         fontWeight: FontWeight.bold,
                       ),
                     ),
