@@ -13,7 +13,11 @@ class ProgressCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final colorScheme = Theme.of(context).colorScheme;
+
+    final clampedPercent = percent.clamp(0.0, 1.0);
     return Card(
+      color: colorScheme.surfaceContainerHighest,
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -21,14 +25,31 @@ class ProgressCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: textTheme.bodyLarge,
+              style: textTheme.titleMedium?.copyWith(
+                color: colorScheme.onSurface,
+              ),
             ),
             const SizedBox(height: 6),
-            Text(subtitle),
+            Text(
+              subtitle,
+              style: textTheme.bodyMedium?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
             const SizedBox(height: 12),
-            LinearProgressIndicator(value: percent),
+            LinearProgressIndicator(
+              value: clampedPercent,
+              minHeight: 8,
+              backgroundColor: colorScheme.outlineVariant,
+              borderRadius: const BorderRadius.all(Radius.circular(99)),
+            ),
             const SizedBox(height: 6),
-            Text('${(percent * 100).toStringAsFixed(0)}% completed'),
+            Text(
+              '${(clampedPercent * 100).toStringAsFixed(0)}% completed',
+              style: textTheme.bodySmall?.copyWith(
+                color: colorScheme.onSurfaceVariant,
+              ),
+            ),
           ],
         ),
       ),
