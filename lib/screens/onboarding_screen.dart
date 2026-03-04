@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../app_routes.dart';
+import '../ui/layout.dart';
 
 class OnboardingScreen extends StatefulWidget {
   const OnboardingScreen({super.key});
@@ -12,7 +13,7 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   int _page = 0;
   @override
   Widget build(BuildContext context) {
-    final size = MediaQuery.of(context).size;
+    final size = MediaQuery.sizeOf(context);
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -100,28 +101,33 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
   }
 
   Widget _buildPage(Size size, String title, String subtitle, String image) {
+    final imageHeight = (size.height * 0.35).clamp(220.0, 360.0);
     return Padding(
       padding: const EdgeInsets.all(0),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            image,
-            width: size.width * 0.7,
-            height: size.height * 0.35,
-            fit: BoxFit.contain,
-          ),
-          const SizedBox(height: 24),
-          Text(
-            title,
-            style: Theme.of(context).textTheme.headlineLarge?.copyWith(
-              fontSize: 22,
-              fontWeight: FontWeight.bold,
+      child: AppLayout.centeredConstrained(
+        maxWidth: 520,
+        alignment: Alignment.center,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset(
+              image,
+              width: size.width * 0.7,
+              height: imageHeight,
+              fit: BoxFit.contain,
             ),
-          ),
-          const SizedBox(height: 8),
-          Text(subtitle, textAlign: TextAlign.center),
-        ],
+            const SizedBox(height: 24),
+            Text(title, style: Theme.of(context).textTheme.titleLarge),
+            const SizedBox(height: 8),
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 12),
+              child: Text(
+                subtitle,
+                textAlign: TextAlign.center,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

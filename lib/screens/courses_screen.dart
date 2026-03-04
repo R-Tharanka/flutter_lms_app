@@ -3,6 +3,8 @@ import '../models/course.dart';
 import '../widgets/app_bar_simple.dart';
 import '../widgets/course_card.dart';
 import '../app_routes.dart';
+import '../ui/app_spacing.dart';
+import '../ui/layout.dart';
 
 class CoursesScreen extends StatelessWidget {
   const CoursesScreen({super.key});
@@ -10,26 +12,26 @@ class CoursesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBarSimple(title: 'Courses'),
-      body: ListView.builder(
-       padding: const EdgeInsets.only(
-          top: 16,
-          left: 6,
-          right: 6,
-       ),
-        itemCount: dummyCourses.length,
-        itemBuilder: (ctx, i) {
-          final c = dummyCourses[i];
-          return CourseCard(
-            course: c,
-            onTap: () {
-              Navigator.pushNamed(
-                context,
-                AppRoutes.courseDetail,
-                arguments: c,
-              );
-            },
-          );
-        },
+      body: AppLayout.centeredConstrained(
+        maxWidth: 720,
+        child: ListView.separated(
+          padding: AppSpacing.listPadding(context),
+          itemCount: dummyCourses.length,
+          separatorBuilder: (context, index) => const SizedBox(height: 12),
+          itemBuilder: (ctx, i) {
+            final c = dummyCourses[i];
+            return CourseCard(
+              course: c,
+              onTap: () {
+                Navigator.pushNamed(
+                  context,
+                  AppRoutes.courseDetail,
+                  arguments: c,
+                );
+              },
+            );
+          },
+        ),
       ),
     );
   }

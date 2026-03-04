@@ -14,8 +14,6 @@ class ProgressCard extends StatelessWidget {
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
     return Card(
-      margin: const EdgeInsets.all(8),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Column(
@@ -23,10 +21,7 @@ class ProgressCard extends StatelessWidget {
           children: [
             Text(
               title,
-              style: textTheme.bodyMedium?.copyWith(
-                fontSize: 14,
-                fontWeight: FontWeight.bold,
-              ),
+              style: textTheme.bodyLarge,
             ),
             const SizedBox(height: 6),
             Text(subtitle),

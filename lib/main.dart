@@ -16,9 +16,6 @@ class LMSApp extends StatelessWidget {
       theme: AppTheme.light(),
       initialRoute: AppRoutes.splash,
       routes: AppRoutes.routes,
-      // home: const Scaffold(
-      //   body: Center(child: Text('Welcome to the LMS App!')),
-      // ),
       debugShowCheckedModeBanner: false,
     );
   }

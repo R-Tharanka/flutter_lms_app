@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import '../widgets/app_bar_simple.dart';
 import '../widgets/primary_button.dart';
+import '../ui/app_spacing.dart';
+import '../ui/layout.dart';
+import '../ui/status_colors.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -23,7 +26,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     final textTheme = Theme.of(context).textTheme;
+    final statusColors = Theme.of(context).extension<StatusColors>();
+    final avatarRadius = (size.width * 0.12).clamp(36.0, 52.0);
     final completedCourses = [
       'Flutter for Beginners',
       'Dart Programming',
@@ -32,79 +38,71 @@ class _ProfileScreenState extends State<ProfileScreen> {
     return Scaffold(
       appBar: AppBarSimple(title: 'Profile'),
       body: SingleChildScrollView(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Center(
-              child: CircleAvatar(
-                radius: 40,
-                child: Text(
-                  _nameController.text.isNotEmpty
-                      ? _nameController.text[0]
-                      : 'U',
-                ),
-              ),
-            ),
-            const SizedBox(height: 12),
-            if (!_editing) ...[
+        padding: AppSpacing.screenPadding(context),
+        child: AppLayout.centeredConstrained(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
               Center(
-                child: Text(
-                  _nameController.text,
-                  style: textTheme.titleMedium?.copyWith(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
+                child: CircleAvatar(
+                  radius: avatarRadius,
+                  child: Text(
+                    _nameController.text.isNotEmpty
+                        ? _nameController.text[0]
+                        : 'U',
                   ),
                 ),
               ),
-              const SizedBox(height: 6),
-              Center(
-                child: Text(
-                  _bioController.text,
-                  style: textTheme.bodyMedium?.copyWith(fontSize: 18),
+              const SizedBox(height: 12),
+              if (!_editing) ...[
+                Center(
+                  child: Text(
+                    _nameController.text,
+                    style: textTheme.titleMedium,
+                  ),
                 ),
+                const SizedBox(height: 6),
+                Center(
+                  child: Text(
+                    _bioController.text,
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+              ] else ...[
+                TextField(
+                  controller: _nameController,
+                  decoration: const InputDecoration(labelText: 'Name'),
+                ),
+                const SizedBox(height: 8),
+                TextField(
+                  controller: _bioController,
+                  decoration: const InputDecoration(labelText: 'Bio'),
+                ),
+              ],
+
+              const SizedBox(height: 20),
+              PrimaryButton(
+                label: _editing ? 'Save' : 'Edit Profile',
+                onPressed: () => setState(() => _editing = !_editing),
               ),
-            ] else ...[
-              TextField(
-                controller: _nameController,
-                decoration: const InputDecoration(labelText: 'Name'),
-              ),
+              const SizedBox(height: 26),
+
+              Text('Completed Courses', style: textTheme.titleLarge),
               const SizedBox(height: 8),
-              TextField(
-                controller: _bioController,
-                decoration: const InputDecoration(labelText: 'Bio'),
+              ...completedCourses.map(
+                (title) => ListTile(
+                  contentPadding: EdgeInsets.zero,
+                  dense: true,
+                  visualDensity: const VisualDensity(vertical: -2),
+                  leading: Icon(
+                    Icons.check_circle,
+                    color: statusColors?.submittedFg ?? Colors.green.shade700,
+                  ),
+                  title: Text(title, style: textTheme.bodyLarge),
+                ),
               ),
             ],
-
-            const SizedBox(height: 20),
-            PrimaryButton(
-              label: _editing ? 'Save' : 'Edit Profile',
-              onPressed: () => setState(() => _editing = !_editing),
-            ),
-            const SizedBox(height: 26),
-
-            Text(
-              'Completed Courses',
-              style: textTheme.titleMedium?.copyWith(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-
-            const SizedBox(height: 8),
-            ...completedCourses.map(
-              (title) => ListTile(
-                contentPadding: EdgeInsets.zero,
-                dense: true,
-                visualDensity: const VisualDensity(vertical: -2),
-                leading: const Icon(Icons.check_circle, color: Colors.green),
-                title: Text(
-                  title,
-                  style: textTheme.bodyMedium?.copyWith(fontSize: 17),
-                ),
-              ),
-            ),
-          ],
+          ),
         ),
       ),
     );

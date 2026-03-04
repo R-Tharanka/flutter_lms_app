@@ -52,10 +52,11 @@ Common entry points and modules:
 - `lib/app_routes.dart` – route constants + route table
 - `lib/theme.dart` – app theme (Inter font, app bar styles, etc.)
 
-UI:
+UI structure (conventions):
 
-- `lib/screens/` – screens (splash, onboarding, login, home, courses, course detail, lesson, assignments, profile)
-- `lib/widgets/` – reusable widgets (cards, app bar, primary button)
+- `lib/screens/` – full pages (Scaffolds + navigation): splash, onboarding, login, home, courses, course detail, lesson, assignments, profile
+- `lib/widgets/` – reusable UI components used across pages (cards, app bar, primary button)
+- `lib/ui/` – UI primitives/helpers (responsive spacing, layout helpers, theme extensions)
 
 Data (dummy/local):
 
@@ -112,10 +113,11 @@ flutter analyze
 
 ## Notes / Limitations
 
-- This is currently a **UI-only** app.
-- Login is simulated (local validation + a short delay).
-- Courses, lessons, and assignments are powered by **dummy in-memory lists**.
-- No persistence, authentication, or API calls are implemented yet.
+- UI-only demo (no backend/auth/API persistence)
+- Login is simulated (local validation + a short delay)
+- Courses/lessons/assignments come from dummy in-memory lists
+- Responsive layout uses MediaQuery-based padding/sizing and centered max-width layouts for larger screens (tablets/web)
+- Very small screens and extreme landscape sizes may still need additional fine-tuning
 
 ## State Management
 

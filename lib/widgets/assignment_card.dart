@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../models/assignment.dart';
+import '../ui/status_colors.dart';
 
 class AssignmentCard extends StatelessWidget {
   final Assignment assignment;
@@ -9,36 +10,44 @@ class AssignmentCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final textTheme = Theme.of(context).textTheme;
+    final statusColors = Theme.of(context).extension<StatusColors>();
+    final isSubmitted = assignment.status == 'Submitted';
+
+    final badgeBg = isSubmitted
+        ? statusColors?.submittedBg ?? Colors.green.shade100
+        : statusColors?.pendingBg ?? Colors.orange.shade100;
+    final badgeFg = isSubmitted
+        ? statusColors?.submittedFg ?? Colors.green.shade800
+        : statusColors?.pendingFg ?? Colors.orange.shade800;
+
     return Card(
-      margin: const EdgeInsets.symmetric(vertical: 6, horizontal: 12),
-      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: Padding(
         padding: const EdgeInsets.all(12.0),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              assignment.title,
-              style: textTheme.bodyMedium?.copyWith(
-                fontSize: 16,
-                fontWeight: FontWeight.bold,
+            Expanded(
+              child: Text(
+                assignment.title,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: textTheme.bodyLarge,
               ),
             ),
-            Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+            const SizedBox(width: 12),
+            DecoratedBox(
               decoration: BoxDecoration(
-                color: assignment.status == 'Submitted'
-                    ? Colors.green[100]
-                    : Colors.orange[100],
-                borderRadius: BorderRadius.circular(8),
+                color: badgeBg,
+                borderRadius: BorderRadius.circular(10),
               ),
-              child: Text(
-                assignment.status,
-                style: textTheme.bodySmall?.copyWith(
-                  fontStyle: FontStyle.normal,
-                  color: assignment.status == 'Submitted'
-                      ? Colors.green[800]
-                      : Colors.orange[800],
+              child: Padding(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                child: Text(
+                  assignment.status,
+                  style: textTheme.bodySmall?.copyWith(
+                    fontStyle: FontStyle.normal,
+                    color: badgeFg,
+                  ),
                 ),
               ),
             ),

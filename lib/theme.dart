@@ -1,37 +1,43 @@
 import 'package:flutter/material.dart';
+import 'ui/status_colors.dart';
 
 class AppTheme {
   static ThemeData light() {
+    final colorScheme = ColorScheme.fromSeed(
+      seedColor: Colors.blue,
+      brightness: Brightness.light,
+    );
+
     return ThemeData(
       brightness: Brightness.light,
-      primarySwatch: Colors.blue,
-      scaffoldBackgroundColor: Colors.white,
+      colorScheme: colorScheme,
+      scaffoldBackgroundColor: colorScheme.surface,
 
       // Set Inter globally
       fontFamily: 'Inter',
 
-      appBarTheme: const AppBarTheme(
-        backgroundColor: Colors.blue,
-        foregroundColor: Colors.white,
+      appBarTheme: AppBarTheme(
+        backgroundColor: colorScheme.primary,
+        foregroundColor: colorScheme.onPrimary,
         titleTextStyle: TextStyle(
           fontSize: 20,
           fontWeight: FontWeight.w600,
-          color: Colors.white,
+          color: colorScheme.onPrimary,
         ),
       ),
 
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-        backgroundColor: Colors.white,
-        selectedItemColor: Colors.blue,
-        unselectedItemColor: Colors.grey,
+      bottomNavigationBarTheme: BottomNavigationBarThemeData(
+        backgroundColor: colorScheme.surface,
+        selectedItemColor: colorScheme.primary,
+        unselectedItemColor: colorScheme.onSurfaceVariant,
         type: BottomNavigationBarType.fixed,
         elevation: 8,
       ),
 
       elevatedButtonTheme: ElevatedButtonThemeData(
         style: ElevatedButton.styleFrom(
-          backgroundColor: Colors.blue,
-          foregroundColor: Colors.white,
+          backgroundColor: colorScheme.primary,
+          foregroundColor: colorScheme.onPrimary,
           textStyle: const TextStyle(
             fontSize: 16,
             fontWeight: FontWeight.w600,
@@ -40,33 +46,65 @@ class AppTheme {
         ),
       ),
 
-      textTheme: const TextTheme(
-        // Main screen titles
+      inputDecorationTheme: InputDecorationTheme(
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+
+      cardTheme: CardThemeData(
+        elevation: 1.5,
+        margin: EdgeInsets.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+      ),
+
+      extensions: const [
+        StatusColors(
+          submittedBg: Color(0xFFC8E6C9),
+          submittedFg: Color(0xFF1B5E20),
+          pendingBg: Color(0xFFFFE0B2),
+          pendingFg: Color(0xFFE65100),
+        ),
+      ],
+
+      textTheme: TextTheme(
         headlineLarge: TextStyle(
           fontSize: 24,
           fontWeight: FontWeight.w700,
-          color: Colors.black,
+          color: colorScheme.onSurface,
         ),
-
-        // Section titles
+        titleLarge: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.w700,
+          color: colorScheme.onSurface,
+        ),
         titleMedium: TextStyle(
           fontSize: 18,
           fontWeight: FontWeight.w600,
-          color: Colors.black87,
+          color: colorScheme.onSurface,
         ),
-
-        // Body text
+        bodyLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w500,
+          color: colorScheme.onSurface,
+        ),
         bodyMedium: TextStyle(
           fontSize: 16,
           fontWeight: FontWeight.w400,
-          color: Colors.black87,
+          color: colorScheme.onSurface,
         ),
-
-        // Small / secondary text
         bodySmall: TextStyle(
           fontSize: 14,
+          fontWeight: FontWeight.w400,
           fontStyle: FontStyle.italic,
-          color: Colors.grey,
+          color: colorScheme.onSurfaceVariant,
+        ),
+        labelLarge: TextStyle(
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+          color: colorScheme.onSurface,
         ),
       ),
     );
