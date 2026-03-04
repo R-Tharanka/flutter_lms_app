@@ -23,6 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
       const ProfileScreen(),
     ];
     return Scaffold(
+
       appBar: _index == 0
           ? AppBar(
               title: Text(
@@ -31,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             )
           : null,
+
       body: tabs[_index],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _index,
