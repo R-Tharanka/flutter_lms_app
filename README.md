@@ -1,17 +1,153 @@
-# flutter_lms_app
+# Flutter LMS Mobile App
 
-A new Flutter project.
+A **UI-focused Learning Management System (LMS**) mobile application built using Flutter fundamentals. 
+This project demonstrates clean architecture, navigation patterns, reusable widgets, and local state management(no backend/API integration yet).
+
+## Overview
+
+This app demonstrates a simple LMS-style mobile UI with:
+
+- A multi-screen starter flow (splash/onboarding/login)
+- Named-route navigation and a bottom navigation layout
+- Reusable UI components (cards, buttons, app bars)
+- Dummy in-memory data models for courses and assignments
+
+## Highlights
+
+- **Splash → Onboarding → Login** starter flow
+- **Home** with bottom navigation tabs: Dashboard, Courses, Assignments, Profile
+- **Courses** list → course details → lesson screen
+- **Assignments** list with simple status badges
+- **Profile** view + edit (local state only)
+- **Theme + typography**: Inter font applied globally
+
+## App Flow & Navigation
+
+The app uses `MaterialApp` with named routes.
+
+**Initial route:** `/` (Splash)
+
+**Named routes:**
+
+- `/` → Splash
+- `/onboarding` → Onboarding
+- `/login` → Login
+- `/home` → Home (bottom navigation)
+- `/courses` → Courses list
+- `/course_detail` → Course details (expects a `Course` argument)
+- `/lesson` → Lesson (expects a map: `{ course, lessonIndex }`)
+
+Inside Home, the bottom navigation switches between:
+
+- Dashboard (progress cards + “Continue Learning”)
+- Courses
+- Assignments
+- Profile
+
+## Project Structure
+
+Common entry points and modules:
+
+- `lib/main.dart` – app bootstrap
+- `lib/app_routes.dart` – route constants + route table
+- `lib/theme.dart` – app theme (Inter font, app bar styles, etc.)
+
+UI:
+
+- `lib/screens/` – screens (splash, onboarding, login, home, courses, course detail, lesson, assignments, profile)
+- `lib/widgets/` – reusable widgets (cards, app bar, primary button)
+
+Data (dummy/local):
+
+- `lib/models/course.dart` – `Course` model + `dummyCourses`
+- `lib/models/assignment.dart` – `Assignment` model + `dummyAssignments`
+
+Assets:
+
+- `assets/images/` – logos + onboarding images
+- `assets/fonts/` – Inter font files
+
+## Tech Stack
+
+- Flutter (Material)
+- Dart SDK: `^3.11.0`
+- Lint rules: `flutter_lints`
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+### Prerequisites
 
-A few resources to get you started if this is your first Flutter project:
+- Flutter SDK installed and on PATH
+- A configured device/emulator (Android/iOS) or Chrome (web)
 
-- [Learn Flutter](https://docs.flutter.dev/get-started/learn-flutter)
-- [Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Flutter learning resources](https://docs.flutter.dev/reference/learning-resources)
+### Install dependencies
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+```bash
+flutter pub get
+```
+
+### Run
+
+```bash
+flutter run
+```
+
+Run on a specific platform:
+
+```bash
+flutter run -d chrome
+```
+
+### Test
+
+```bash
+flutter test
+```
+
+### Lint / Analyze
+
+```bash
+flutter analyze
+```
+
+## Notes / Limitations
+
+- This is currently a **UI-only** app.
+- Login is simulated (local validation + a short delay).
+- Courses, lessons, and assignments are powered by **dummy in-memory lists**.
+- No persistence, authentication, or API calls are implemented yet.
+
+## State Management
+
+Simple UI state is handled using `setState`:
+
+- Lesson completion toggle
+- Bottom navigation tab switching
+- Profile edit mode
+- Simulated login loading state
+
+## Screens Included
+
+- Splash
+- Onboarding (PageView)
+- Login (form validation)
+- Home (bottom navigation + dashboard)
+- Courses list
+- Course detail (lesson list)
+- Lesson (placeholder content + mark complete toggle)
+- Assignments list
+- Profile (edit name/bio locally)
+
+## Future Improvements
+
+- Backend integration (Firebase / REST API)
+- Persistent storage for lesson progress
+- Authentication with secure login
+- Advanced state management (Provider / Bloc)
+- Unit & widget test coverage
+
+## License
+
+This project is licensed under the **MIT License**.
+
+See [LICENSE](LICENSE) for details.
