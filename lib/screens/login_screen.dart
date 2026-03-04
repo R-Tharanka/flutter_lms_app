@@ -57,6 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 children: [
                   Image.asset(
                     'assets/images/logo-bgr.png',
+                    semanticLabel: 'LMS App Logo',
                     width: logoSize,
                     height: logoSize,
                   ),
