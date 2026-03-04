@@ -46,7 +46,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   Widget _dashboardTab() {
+    final size = MediaQuery.sizeOf(context);
     final textTheme = Theme.of(context).textTheme;
+    final double progressListHeight = (size.height * 0.22).clamp(150.0, 190.0);
+    final double progressCardWidth = (size.width * 0.72).clamp(220.0, 320.0);
+
     return SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,32 +68,31 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                 ),
                 const SizedBox(height: 8),
-                //const Text('Keep learning — progress today!'),
               ],
             ),
           ),
           SizedBox(
-            height: 170,
+            height: progressListHeight,
             child: ListView(
               scrollDirection: Axis.horizontal,
-              children: const [
+              children: [
                 SizedBox(
-                  width: 240,
-                  child: ProgressCard(
+                  width: progressCardWidth,
+                  child: const ProgressCard(
                     title: 'Flutter for Beginners',
                     subtitle: 'Chapter 2 of 12',
                     percent: 0.3,
                   ),
                 ),
                 SizedBox(
-                  width: 240,
-                  child: ProgressCard(
+                  width: progressCardWidth,
+                  child: const ProgressCard(
                     title: 'Dart Programming',
                     subtitle: 'Chapter 5 of 10',
                     percent: 0.5,
                   ),
                 ),
-                SizedBox(width: 12),
+                const SizedBox(width: 12),
               ],
             ),
           ),

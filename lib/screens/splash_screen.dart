@@ -10,10 +10,12 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  Timer? _timer;
+
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 2), () {
+    _timer = Timer(const Duration(seconds: 2), () {
       if (!mounted) return;
       Navigator.pushReplacementNamed(
         context,
@@ -23,24 +25,36 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   @override
+  void dispose() {
+    _timer?.cancel();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     final textTheme = Theme.of(context).textTheme;
     return Scaffold(
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset('assets/images/logo-bgr.png', width: 150),
-            const SizedBox(height: 20),
-            Text(
-              'Welcome to LMS App',
-              style: textTheme.headlineLarge?.copyWith(
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+      body: SafeArea(
+        child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset(
+                'assets/images/logo-bgr.png',
+                width: (size.width * 0.4).clamp(120.0, 180.0),
               ),
-            ),
-            const CircularProgressIndicator(),
-          ],
+              const SizedBox(height: 20),
+              Text(
+                'Welcome to LMS App',
+                style: textTheme.headlineLarge?.copyWith(
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              const CircularProgressIndicator(),
+            ],
+          ),
         ),
       ),
     );

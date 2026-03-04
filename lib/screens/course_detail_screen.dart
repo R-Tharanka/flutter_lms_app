@@ -7,7 +7,10 @@ class CourseDetailScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Course course = ModalRoute.of(context)!.settings.arguments as Course;
+    final size = MediaQuery.sizeOf(context);
     final textTheme = Theme.of(context).textTheme;
+    final double headerImageHeight =
+        (size.width * 0.45).clamp(160.0, 240.0);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -26,7 +29,7 @@ class CourseDetailScreen extends StatelessWidget {
               child: Image.asset(
                 course.image,
                 width: double.infinity,
-                height: 160,
+                height: headerImageHeight,
                 fit: BoxFit.cover,
               ),
             ),

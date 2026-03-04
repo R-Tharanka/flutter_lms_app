@@ -12,11 +12,13 @@ class _LessonScreenState extends State<LessonScreen> {
   double _opacity = 1.0;
   @override
   Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
     final args =
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final Course course = args['course'];
     final int lessonIndex = args['lessonIndex'];
     final textTheme = Theme.of(context).textTheme;
+    final double mediaHeight = (size.height * 0.28).clamp(180.0, 260.0);
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -33,7 +35,7 @@ class _LessonScreenState extends State<LessonScreen> {
               duration: const Duration(milliseconds: 500),
               opacity: _opacity,
               child: Container(
-                height: 200,
+                height: mediaHeight,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(12),
                   color: Colors.grey[300],
